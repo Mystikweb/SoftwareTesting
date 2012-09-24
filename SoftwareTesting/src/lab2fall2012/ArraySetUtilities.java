@@ -24,6 +24,10 @@ package lab2fall2012;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ *
+ * @author Christopher
+ */
 public final class ArraySetUtilities {
     /**
      * Method will generate a set of integers between the minimum and maximum of the requested size.
