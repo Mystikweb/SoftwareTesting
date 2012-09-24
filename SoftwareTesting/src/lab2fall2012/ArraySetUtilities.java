@@ -32,10 +32,10 @@ public final class ArraySetUtilities {
     /**
      * Method will generate a set of integers between the minimum and maximum of the requested size.
      * 
-     * @param size - size of the set to be created
-     * @param minimum - minimum random number boundary
-     * @param maximum - maximum random number boundary
-     * @param uniqueElements - determines whether the list will contain unique values
+     * @param size - the number of elements for the array
+     * @param minimum - the lower value of the range of integers to generate
+     * @param maximum - the upper value of the range of integers to generate
+     * @param uniqueElements - flag for unique values 
      * @return 
      */
     public static ArrayList<Integer> createSet(int size, int minimum, int maximum, boolean uniqueElements) {
@@ -66,7 +66,7 @@ public final class ArraySetUtilities {
     /**
      * Method will determine if all elements in the input set are all unique 
      * 
-     * @param arraySet - set of values to check
+     * @param arraySet - the input array to check 
      * @return true if there are no duplicates, false if duplicates exists
      */
     public static boolean isUnique(ArrayList<Integer> arraySet) {
@@ -86,8 +86,8 @@ public final class ArraySetUtilities {
     /**
      * Determines the common elements (intersection) between setA and setB 
      * 
-     * @param setA - Set of values to evaluate
-     * @param setB - Set of values to evaluate
+     * @param setA - The first of the two Sets
+     * @param setB - The second of the two sets 
      * @return a new set that consists of the common elements between A and B
      * @throws java.lang.IllegalArgumentException - when one of setA or setB is null or empty 
      */
@@ -123,8 +123,8 @@ public final class ArraySetUtilities {
     /**
      * Determine the union of two sets 
      * 
-     * @param setA - Value Set to use
-     * @param setB - Value Set to use
+     * @param setA - the first of the two sets for the union
+     * @param setB - the second of the two sets for the union 
      * @return a union between setA and setB
      * @throws java.lang.IllegalArgumentException - when one of setA or setB is null or empty 
      */
@@ -164,8 +164,8 @@ public final class ArraySetUtilities {
     /**
      * Determines if setB is a subSet of setA
      * 
-     * @param setA - Set of values
-     * @param setB - Set of values
+     * @param setA - the full set for the comparison
+     * @param setB - the sub set to be tested 
      * @return true if setB is a subSet of setA 
      * @throws java.lang.IllegalArgumentException - when one of setA or setB is null or empty
      */
