@@ -5,6 +5,7 @@
 package lab2fall2012;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -38,22 +39,74 @@ public class ArraySetUtilitiesTest {
     }
 
     /**
-     * Test of createSet method, of class ArraySetUtilities.
+     * Size Match test for CreateSet Method
+     * Expected: Pass
      */
     @Test
-    public void testCreateSet() {
-        System.out.println("createSet");
-        int size = 0;
-        int minimum = 0;
-        int maximum = 0;
+    public void testCreateSetSizeMatch() {
+        System.out.println("createSet Size Test");
+        int size = 10;
+        int minimum = 1;
+        int maximum = 10;
         boolean uniqueElements = false;
-        ArrayList expResult = null;
-        ArrayList result = ArraySetUtilities.createSet(size, minimum, maximum, uniqueElements);
+        
+        ArrayList arrayToCheck = ArraySetUtilities.createSet(size, minimum, maximum, uniqueElements);
+        
+        int expResult = size;
+        int result = arrayToCheck.size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
+    /**
+     * Test minimum boundary can be met in createSet method
+     * Expected Result: Pass
+     */
+    @Test
+    public void testCreateSetMinBoundary() {
+        System.out.println("createSet Minimum Boundary Test");
+        int size = 100;
+        int min = 1;
+        int max = 5;
+        boolean unique = false;
+        
+        ArrayList arrayToCheck = ArraySetUtilities.createSet(size, min, max, unique);
+        
+        boolean result = false;
+        boolean expectedResult = true;
+        
+        for(int i = 0; i < arrayToCheck.size(); i++) {
+            if(arrayToCheck.get(i) == min) {
+                result = true;
+            }
+        }
+        assertEquals(expectedResult, result);
+    }
+ 
+    /**
+     * Test maximum boundary can be met in createSet method
+     * Expected Result: Pass
+     */
+    @Test
+    public void testCreateSetMaxBoundary() {
+        System.out.println("createSet Maximum Boundary Test");
+        int size = 10;
+        int min = 1;
+        int max = 5;
+        boolean unique = false;
+        
+        ArrayList arrayToCheck = ArraySetUtilities.createSet(size, min, max, unique);
+        
+        boolean result = false;
+        boolean expectedResult = true;
+        
+        for(int i = 0; i < arrayToCheck.size(); i++) {
+            if(arrayToCheck.get(i) == max) {
+                result = true;
+            }
+        }
+        assertEquals(expectedResult, result);
+    }
+    
     /**
      * Test of isUnique method, of class ArraySetUtilities.
      */
@@ -84,20 +137,59 @@ public class ArraySetUtilitiesTest {
     }
 
     /**
-     * Test of union method, of class ArraySetUtilities.
+     * Basic test of Union Method
+     * Expected Result: Pass
      */
     @Test
-    public void testUnion() {
-        System.out.println("union");
-        ArrayList<Integer> setA = null;
-        ArrayList<Integer> setB = null;
-        ArrayList expResult = null;
-        ArrayList result = ArraySetUtilities.union(setA, setB);
+    public void testUnionBasic() {
+        System.out.println("Union Basic");
+        ArrayList<Integer> A = new ArrayList(Arrays.asList(1,2,3));
+        ArrayList<Integer> B = new ArrayList(Arrays.asList(3,4,5));
+        ArrayList expResult = new ArrayList(Arrays.asList(1,2,3,4,5));
+        ArrayList result = ArraySetUtilities.union(A, B);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
+    /**
+     * Advanced Test of Union Method
+     * Expected Results: Pass
+     */
+    @Test
+    public void testUnionAdvanced() {
+        System.out.println("Union Advanced");
+        ArrayList<Integer> A = new ArrayList(Arrays.asList(1,1,1,88,1,1,1,2,3));
+        ArrayList<Integer> B = new ArrayList(Arrays.asList(6,88,-2,2));
+        ArrayList expResult = new ArrayList(Arrays.asList(1,88,2,3,6,-2));
+        ArrayList result = ArraySetUtilities.union(A, B);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Exception Test for Union Method - Set A Null
+     * Expected Result: Pass
+     */
+    @Test(expected=IllegalArgumentException.class)
+    public void testUnionNullArrayA() {
+        ArrayList<Integer> A = null;
+        ArrayList<Integer> B = new ArrayList(Arrays.asList(3,4,5));
+        ArrayList result = ArraySetUtilities.union(A, B);
+        fail("Expected exception not thrown");
+    }
+    
+    /**
+     * Exception Test for Union Method - Set B Null
+     * Expected Result: Pass
+     */
+    @Test(expected=IllegalArgumentException.class)
+    public void testUnionNullArrayB() {
+        System.out.println("un");
+        ArrayList<Integer> A = new ArrayList(Arrays.asList(3,4,5));
+        ArrayList<Integer> B = null;
+        ArrayList expResult = new ArrayList(Arrays.asList(1,2,3,4,5));
+        ArrayList result = ArraySetUtilities.union(A, B);
+        fail("Expected exception not thrown");
+    }
+    
     /**
      * Test of subSet method, of class ArraySetUtilities.
      */
