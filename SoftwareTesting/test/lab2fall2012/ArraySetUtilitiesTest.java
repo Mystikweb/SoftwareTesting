@@ -83,15 +83,16 @@ public class ArraySetUtilitiesTest {
     }
  
     /**
-     * Test maximum boundary can be met in createSet method
+     * Test that set contains 1 less than the maximum boundary as per documentation
      * Expected Result: Pass
      */
     @Test
     public void testCreateSetMaxBoundary() {
         System.out.println("createSet Maximum Boundary Test");
-        int size = 10;
+        int size = 100;
         int min = 1;
         int max = 5;
+        int upperBoundary = max - 1;
         boolean unique = false;
         
         ArrayList arrayToCheck = ArraySetUtilities.createSet(size, min, max, unique);
@@ -100,11 +101,38 @@ public class ArraySetUtilitiesTest {
         boolean expectedResult = true;
         
         for(int i = 0; i < arrayToCheck.size(); i++) {
-            if(arrayToCheck.get(i) == max) {
+            if(arrayToCheck.get(i) == upperBoundary) {
                 result = true;
             }
         }
         assertEquals(expectedResult, result);
+    }
+    
+    /**
+     * 
+     */
+    @Test
+    public void testCreateSetMinGreaterThanMax() {
+        System.out.println("createSet minimum is greater than maximum test");
+        int size = 10;
+        int min = 5;
+        int max = 1;
+        boolean unique = false;
+        
+        ArrayList arrayToCheck = ArraySetUtilities.createSet(size, min, max, unique);
+        
+        boolean expectedResults = true;
+        boolean results = true;
+        
+        for(int i = 0; i < arrayToCheck.size(); i++) {
+            int checkValue = (int) arrayToCheck.get(i);
+            System.out.println(checkValue);
+            if(checkValue > min || checkValue < max) {
+                results = false;
+            }
+        }
+        
+        assertEquals(expectedResults, results);
     }
     
     /**

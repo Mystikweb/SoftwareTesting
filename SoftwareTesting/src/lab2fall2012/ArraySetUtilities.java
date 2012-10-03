@@ -30,7 +30,8 @@ import java.util.Arrays;
  */
 public final class ArraySetUtilities {
     /**
-     * Method will generate a set of integers between the minimum and maximum of the requested size.
+     * Method will generate a set of integers between the minimum and maximum 
+     * of the requested size.
      * 
      * @param size - the number of elements for the array
      * @param minimum - the lower value of the range of integers to generate
@@ -38,7 +39,8 @@ public final class ArraySetUtilities {
      * @param uniqueElements - flag for unique values 
      * @return 
      */
-    public static ArrayList<Integer> createSet(int size, int minimum, int maximum, boolean uniqueElements) {
+    public static ArrayList<Integer> createSet(int size, int minimum, 
+            int maximum, boolean uniqueElements) {
         boolean isDone = false;
         int i = 0;
         ArrayList<Integer> ReturnList = null;
@@ -46,7 +48,8 @@ public final class ArraySetUtilities {
             ReturnList = new ArrayList<Integer>();
             boolean isUnique = false;
             while (!isDone) {
-                int randomValue = (int) (Math.random() * (maximum - minimum)) + minimum;
+                int randomValue = 
+                        (int) (Math.random() * (maximum - minimum)) + minimum;
                 isUnique = true;
                 for (int j = 0; j < i && isUnique; j++) {
                     isUnique = randomValue != ReturnList.get(j);
@@ -89,16 +92,20 @@ public final class ArraySetUtilities {
      * @param setA - The first of the two Sets
      * @param setB - The second of the two sets 
      * @return a new set that consists of the common elements between A and B
-     * @throws java.lang.IllegalArgumentException - when one of setA or setB is null or empty 
+     * @throws java.lang.IllegalArgumentException - 
+     *                  when one of setA or setB is null or empty 
      */
-    public static ArrayList<Integer> intersection(ArrayList<Integer> setA, ArrayList<Integer> setB)
+    public static ArrayList<Integer> intersection(ArrayList<Integer> setA, 
+            ArrayList<Integer> setB)
             throws IllegalArgumentException {
         ArrayList<Integer> returnValues = new ArrayList<Integer>();
         if (null == setA || null == setB) {
-            throw new IllegalArgumentException("Arralist arguments cannot be null");
+            throw new IllegalArgumentException(
+                    "Arralist arguments cannot be null");
         }
         if (setA.size() == 0 || setB.size() == 0) {
-            throw new IllegalArgumentException("Arraylist arguments cannot be empty");
+            throw new IllegalArgumentException(
+                    "Arraylist arguments cannot be empty");
         }
         for (int i = 0; i < setA.size(); i++) {
             for (int j = 0; j < setB.size(); j++) {
@@ -126,16 +133,20 @@ public final class ArraySetUtilities {
      * @param setA - the first of the two sets for the union
      * @param setB - the second of the two sets for the union 
      * @return a union between setA and setB
-     * @throws java.lang.IllegalArgumentException - when one of setA or setB is null or empty 
+     * @throws java.lang.IllegalArgumentException - 
+     *                  when one of setA or setB is null or empty 
      */
-    public static ArrayList<Integer> union(ArrayList<Integer> setA, ArrayList<Integer> setB)
+    public static ArrayList<Integer> union(ArrayList<Integer> setA, 
+            ArrayList<Integer> setB)
             throws IllegalArgumentException {
         ArrayList<Integer> returnValues = new ArrayList<Integer>();
         if (null == setA || null == setB) {
-            throw new IllegalArgumentException("Arralist arguments cannot be null");
+            throw new IllegalArgumentException(
+                    "Arralist arguments cannot be null");
         }
         if (setA.size() == 0 || setB.size() == 0) {
-            throw new IllegalArgumentException("Arraylist arguments cannot be empty");
+            throw new IllegalArgumentException(
+                    "Arraylist arguments cannot be empty");
         }
 
         for (int i = 0; i < setA.size(); i++) {
@@ -167,14 +178,18 @@ public final class ArraySetUtilities {
      * @param setA - the full set for the comparison
      * @param setB - the sub set to be tested 
      * @return true if setB is a subSet of setA 
-     * @throws java.lang.IllegalArgumentException - when one of setA or setB is null or empty
+     * @throws java.lang.IllegalArgumentException - 
+     *                  when one of setA or setB is null or empty
      */
-    public static boolean subSet(ArrayList<Integer> setA, ArrayList<Integer> setB) {
+    public static boolean subSet(ArrayList<Integer> setA, 
+            ArrayList<Integer> setB) {
         if (null == setA || null == setB) {
-            throw new IllegalArgumentException("Arralist arguments cannot be null");
+            throw new IllegalArgumentException(
+                    "Arralist arguments cannot be null");
         }
         if (setA.size() == 0 || setB.size() == 0) {
-            throw new IllegalArgumentException("Arraylist arguments cannot be empty");
+            throw new IllegalArgumentException(
+                    "Arraylist arguments cannot be empty");
         }
 
         boolean isInList = true;
