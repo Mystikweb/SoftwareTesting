@@ -42,7 +42,7 @@ public class ArraySetUtilitiesTest {
      * Size Match test for CreateSet Method
      * Expected: Pass
      */
-    @Test
+    @Test(timeout=5000)
     public void testCreateSetSizeMatch() {
         System.out.println("createSet Size Test");
         int size = 10;
@@ -61,7 +61,7 @@ public class ArraySetUtilitiesTest {
      * Test minimum boundary can be met in createSet method
      * Expected Result: Pass
      */
-    @Test
+    @Test(timeout=5000)
     public void testCreateSetMinBoundary() {
         System.out.println("createSet Minimum Boundary Test");
         int size = 100;
@@ -86,7 +86,7 @@ public class ArraySetUtilitiesTest {
      * Test that set contains 1 less than the maximum boundary as per documentation
      * Expected Result: Pass
      */
-    @Test
+    @Test(timeout=5000)
     public void testCreateSetMaxBoundary() {
         System.out.println("createSet Maximum Boundary Test");
         int size = 100;
@@ -111,7 +111,35 @@ public class ArraySetUtilitiesTest {
     /**
      * 
      */
-    @Test
+    @Test(timeout=5000)
+    public void testCreateSetUniqueArray() {
+        System.out.println("createSet unique array");
+        int size = 7;
+        int min = 1;
+        int max = 10;
+        boolean unique = true;
+        
+        ArrayList arrayToCheck = ArraySetUtilities.createSet(size, min, max, unique);
+        
+        boolean expectedResult = true;
+        boolean result = true;
+        
+        for(int i = 0; i < arrayToCheck.size(); i++) {
+            System.out.println(arrayToCheck.get(i));
+            for(int j = i + 1; j < arrayToCheck.size() && result; j++) {
+                result = arrayToCheck.get(i) != arrayToCheck.get(j);
+            }
+        }
+        
+        assertEquals(expectedResult, result);
+    }
+    
+    /**
+     * Test when creating the array with a minimum value greater than the
+     * maximum value
+     * Expected Result: 
+     */
+    @Test(timeout=5000)
     public void testCreateSetMinGreaterThanMax() {
         System.out.println("createSet minimum is greater than maximum test");
         int size = 10;
@@ -168,7 +196,7 @@ public class ArraySetUtilitiesTest {
      * Basic test of Union Method
      * Expected Result: Pass
      */
-    @Test
+    @Test(timeout=5000)
     public void testUnionBasic() {
         System.out.println("Union Basic");
         ArrayList<Integer> A = new ArrayList(Arrays.asList(1,2,3));
@@ -182,7 +210,7 @@ public class ArraySetUtilitiesTest {
      * Advanced Test of Union Method
      * Expected Results: Pass
      */
-    @Test
+    @Test(timeout=5000)
     public void testUnionAdvanced() {
         System.out.println("Union Advanced");
         ArrayList<Integer> A = new ArrayList(Arrays.asList(1,1,1,88,1,1,1,2,3));
@@ -193,10 +221,26 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
+     * Test for no results of Union Method
+     * Expected result: Pass
+     */
+    @Test(timeout=5000)
+    public void testNoUnion() {
+        System.out.println("No Union Test");
+        ArrayList<Integer> A = new ArrayList(Arrays.asList(1,1,1,1,1));
+        ArrayList<Integer> B = new ArrayList(Arrays.asList(1,1,1,1,1));
+        
+        ArrayList expResult = new ArrayList(Arrays.asList(1));
+        ArrayList result = ArraySetUtilities.union(A, B);
+        
+        assertEquals(expResult, result)        ;
+    }
+    
+    /**
      * Exception Test for Union Method - Set A Null
      * Expected Result: Pass
      */
-    @Test(expected=IllegalArgumentException.class)
+    @Test(timeout=5000, expected=IllegalArgumentException.class)
     public void testUnionNullArrayA() {
         ArrayList<Integer> A = null;
         ArrayList<Integer> B = new ArrayList(Arrays.asList(3,4,5));
@@ -208,7 +252,7 @@ public class ArraySetUtilitiesTest {
      * Exception Test for Union Method - Set B Null
      * Expected Result: Pass
      */
-    @Test(expected=IllegalArgumentException.class)
+    @Test(timeout=5000, expected=IllegalArgumentException.class)
     public void testUnionNullArrayB() {
         System.out.println("un");
         ArrayList<Integer> A = new ArrayList(Arrays.asList(3,4,5));
