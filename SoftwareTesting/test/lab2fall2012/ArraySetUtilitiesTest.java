@@ -14,7 +14,7 @@
  * </pre>
  *
  * <h2 style="color: blue">Description:</h2>
- * <p>Utility Class used to provide comparisons using Math Set Theory</p>
+ * <p>Unit test class for the ArraySetUtilites class</p>
  * 
  * @author Christopher Hair
  * @author Student ID 000243034 
@@ -56,18 +56,22 @@ public class ArraySetUtilitiesTest {
     }
 
     /**
-     * Test createSet for basic pass results
-     * Expected: Pass
+     * Perform size test to validate set size matches requested size
+     * Expected Result: Pass
      */
     @Test(timeout=5000)
-    public void testCreateSetBasic() {
-        System.out.println("Test createSet for basic results");
+    public void testCreateSetSize() {
+        System.out.println("createSet basic size");
         int size = 10;
         int minimum = 1;
-        int maximum = 5;
+        int maximum = 10;
         boolean uniqueElements = false;
         
         ArrayList arrayToCheck = ArraySetUtilities.createSet(size, minimum, maximum, uniqueElements);
+        
+        for(int i = 0; i < arrayToCheck.size(); i++) {
+            System.out.println(arrayToCheck.get(i));
+        }
         
         int expResult = size;
         int result = arrayToCheck.size();
@@ -75,12 +79,36 @@ public class ArraySetUtilitiesTest {
     }
 
     /**
-     * Test minimum boundary can be met in createSet method
+     * Test to make sure that an exception is thrown when size is set to 0
+     * Expected Result: Fail
+     */
+    @Test(timeout=5000, expected=IllegalArgumentException.class)
+    public void testCreateSetZeroSize() {
+        System.out.println("createSet basic size");
+        int size = 0;
+        int minimum = 1;
+        int maximum = 10;
+        boolean uniqueElements = false;
+        
+        ArrayList arrayToCheck = ArraySetUtilities.createSet(size, minimum, maximum, uniqueElements);
+        
+        for(int i = 0; i < arrayToCheck.size(); i++) {
+            System.out.println(arrayToCheck.get(i));
+        }
+        
+        int expResult = size;
+        int result = arrayToCheck.size();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test to make sure that the random numbers generated are above 
+     * the minimum boundary
      * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testCreateSetMinBoundary() {
-        System.out.println("createSet Minimum Boundary Test");
+        System.out.println("createSet minimum boundary");
         int size = 100;
         int min = 1;
         int max = 5;
@@ -92,6 +120,7 @@ public class ArraySetUtilitiesTest {
         boolean expectedResult = true;
         
         for(int i = 0; i < arrayToCheck.size(); i++) {
+            System.out.println(arrayToCheck.get(i));
             if(arrayToCheck.get(i) == min) {
                 result = true;
             }
@@ -100,12 +129,13 @@ public class ArraySetUtilitiesTest {
     }
  
     /**
-     * Test that set contains 1 less than the maximum boundary as per documentation
+     * Test to make sure that the random numbers generated are below or 
+     * equal to the maximum boundary
      * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testCreateSetMaxBoundary() {
-        System.out.println("createSet Maximum Boundary Test");
+        System.out.println("createSet maximum boundary");
         int size = 100;
         int min = 1;
         int max = 5;
@@ -118,6 +148,7 @@ public class ArraySetUtilitiesTest {
         boolean expectedResult = true;
         
         for(int i = 0; i < arrayToCheck.size(); i++) {
+            System.out.println(arrayToCheck.get(i));
             if(arrayToCheck.get(i) == upperBoundary) {
                 result = true;
             }
@@ -126,13 +157,65 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Test for creating sets where the size of the set is larger than the
-     * maximum boundary when unique is set to true
+     * Boundary check when minimum is larger than maximum which should result
+     * in an error being thrown
+     * Expected Result: Fail
+     */
+    @Test(timeout=5000)
+    public void testCreateSetMinLarger() {
+        int size = 10;
+        int min = 10;
+        int max = 1;
+        boolean unique = false;
+        
+        boolean expResult = true;
+        boolean result = false;
+        ArrayList arrayToCheck = ArraySetUtilities.createSet(size, min, max, unique);
+        
+        for(int i = 0; i < arrayToCheck.size(); i++) {
+            System.out.println(arrayToCheck.get(i));
+            int value = (int) arrayToCheck.get(i);
+            if(value >= min || value < max) {
+                result = true;
+            }
+        }
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Boundary validation for when minimum and maximum are equal which should
+     * result in an exception for being the same
+     * Expected Result: Fail
+     */
+    @Test(timeout=5000)
+    public void testCreateSetSameBoundaries() {
+        int size = 10;
+        int min = 10;
+        int max = 10;
+        boolean unique = false;
+        
+        boolean expResult = true;
+        boolean result = false;
+        ArrayList arrayToCheck = ArraySetUtilities.createSet(size, min, max, unique);
+        
+        for(int i = 0; i < arrayToCheck.size(); i++) {
+            System.out.println(arrayToCheck.get(i));
+            int value = (int) arrayToCheck.get(i);
+            if(value >= min || value < max) {
+                result = true;
+            }
+        }
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test for an exception when the size of the set is larger than the 
+     * maximum boundary while the unique flag is set to true
      * Expected Result: Fail
      */
     @Test(timeout=5000)
     public void testCreateSetUniqueSizeBigger() {
-        System.out.println("createSet unique array");
+        System.out.println("createSet unique array when size is bigger than max");
         int size = 10;
         int min = 1;
         int max = 5;
@@ -154,13 +237,13 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Test to create unique set when the max boundary is larger than the
-     * set size.
+     * Test the unique parameter set true when the maximum boundary is larger 
+     * than the size of the set
      * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testCreateSetUniqueMaxBigger() {
-        System.out.println("createSet unique array");
+        System.out.println("createSet unique array when max is bigger than size");
         int size = 5;
         int min = 1;
         int max = 10;
@@ -182,12 +265,12 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Basic isUnique test for returning true result
+     * Basic test to find out if a set contains all unique values
      * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testIsUniqueBasicTrue() {
-        System.out.println("Test isUnique Basic True results");
+        System.out.println("isUnique basic true results");
         ArrayList<Integer> arraySet = new ArrayList(Arrays.asList(1,2,3,4,5));
         boolean expResult = true;
         boolean result = ArraySetUtilities.isUnique(arraySet);
@@ -195,12 +278,12 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Basic isUnique test for returning false result
+     * Basic test to find out if the set contains any duplicate values
      * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testIsUniqueBasicFalse() {
-        System.out.println("Test isUnique Basic False results");
+        System.out.println("isUnique basic false results");
         ArrayList<Integer> arraySet = new ArrayList(Arrays.asList(1,1,2,3,4));
         boolean expResult = false;
         boolean result = ArraySetUtilities.isUnique(arraySet);
@@ -208,12 +291,12 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Basic isUnique for a false result when array is null
-     * Expected Result: Pass
+     * Test for false return with a null array set
+     * Expected Result: Fail
      */
     @Test(timeout=5000)
     public void testIsUniqueNullArray() {
-        System.out.println("Test isUnique returns false from null array");
+        System.out.println("isUnique returns false from null array");
         ArrayList<Integer> arraySet = null;
         boolean expResult = false;
         boolean result = ArraySetUtilities.isUnique(arraySet);
@@ -221,25 +304,25 @@ public class ArraySetUtilitiesTest {
     }
 
     /**
-     * Basic isUnique test exception with empty array
-     * Expected Result: Pass
+     * Test for exception thrown when an empty array
+     * Expected Result: Fail
      */
     @Test(timeout=5000, expected=IllegalArgumentException.class)
     public void testIsUniqueEmptyArray() {
-        System.out.println("Test isUnique reporting an exception for empty array");
+        System.out.println("isUnique throw exception for empty array");
         ArrayList<Integer> arraySet = new ArrayList();
         boolean expResult = false;
         boolean result = ArraySetUtilities.isUnique(arraySet);
-        fail("Exception not thrown for empty array");
+        fail("isUnique exception not thrown for empty array");
     }
     
     /**
-     * Test intersection for a basic passing result
-     * Expected: Pass
+     * Basic test for intersecting sets
+     * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testIntersectionBasic() {
-        System.out.println("Test intersection for basic pass");
+        System.out.println("intersection for basic pass");
         ArrayList<Integer> setA = new ArrayList(Arrays.asList(1,2,3,4,5));
         ArrayList<Integer> setB = new ArrayList(Arrays.asList(3,4,5,6,7));
         ArrayList expResult = new ArrayList(Arrays.asList(3,4,5));
@@ -248,12 +331,13 @@ public class ArraySetUtilitiesTest {
     }
 
     /**
-     * Test intersection for a no intersection - 0 length array
-     * Expected: Pass
+     * Test for empty array returned when the sets contain no 
+     * intersecting values
+     * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testIntersectionNotEqual() {
-        System.out.println("Test intersection with no intersection - return empty array");
+        System.out.println("intersection with no intersecting values");
         ArrayList<Integer> setA = new ArrayList(Arrays.asList(1,2,3,4,5));
         ArrayList<Integer> setB = new ArrayList(Arrays.asList(6,7,8,9,0));
         ArrayList expResult = new ArrayList();
@@ -262,68 +346,68 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Test intersection for a exception on setA null
-     * Expected: Pass
+     * Test for exception when set A is a null array
+     * Expected Result: Fail
      */
     @Test(timeout=5000,expected=IllegalArgumentException.class)
     public void testIntersectionNullSetA() {
-        System.out.println("Test intersection for exception on null setA");
+        System.out.println("intersection exception for null setA");
         ArrayList<Integer> setA = null;
         ArrayList<Integer> setB = new ArrayList(Arrays.asList(3,4,5,6,7));
         ArrayList expResult = new ArrayList(Arrays.asList(3,4,5));
         ArrayList result = ArraySetUtilities.intersection(setA, setB);
-        fail("Exception not thrown for setA null");
+        fail("intersection exception not thrown for null setA");
     }
     
     /**
-     * Test intersection for a exception on setA null
-     * Expected: Pass
+     * Test for exception when set B is a null array
+     * Expected Result: Fail
      */
     @Test(timeout=5000,expected=IllegalArgumentException.class)
     public void testIntersectionNullSetB() {
-        System.out.println("Test intersection for exception on null setB");
+        System.out.println("intersection exception for null setB");
         ArrayList<Integer> setA = new ArrayList(Arrays.asList(3,4,5,6,7));
         ArrayList<Integer> setB = null;
         ArrayList expResult = new ArrayList(Arrays.asList(3,4,5));
         ArrayList result = ArraySetUtilities.intersection(setA, setB);
-        fail("Exception not thrown for setA null");
+        fail("intersection exception not thrown for null setB");
     }
     
     /**
-     * Test intersection for a exception on setA null
-     * Expected: Pass
+     * Test for exception when set A is an empty array
+     * Expected Result: Fail
      */
     @Test(timeout=5000,expected=IllegalArgumentException.class)
     public void testIntersectionEmptySetA() {
-        System.out.println("Test intersection for exception on empty setA");
+        System.out.println("intersection exception for empty setA");
         ArrayList<Integer> setA = new ArrayList();
         ArrayList<Integer> setB = new ArrayList(Arrays.asList(3,4,5,6,7));
         ArrayList expResult = new ArrayList(Arrays.asList(3,4,5));
         ArrayList result = ArraySetUtilities.intersection(setA, setB);
-        fail("Exception not thrown for setA null");
+        fail("intersection exception not thrown for empty setA");
     }
     
     /**
-     * Test intersection for a exception on setA null
-     * Expected: Pass
+     * Test for exception when set B is an empty array
+     * Expected Result: Fail
      */
     @Test(timeout=5000,expected=IllegalArgumentException.class)
     public void testIntersectionEmptySetB() {
-        System.out.println("Test intersection for exception on empty setB");
+        System.out.println("intersection exception for empty setB");
         ArrayList<Integer> setA = new ArrayList(Arrays.asList(3,4,5,6,7));
         ArrayList<Integer> setB = new ArrayList();
         ArrayList expResult = new ArrayList(Arrays.asList(3,4,5));
         ArrayList result = ArraySetUtilities.intersection(setA, setB);
-        fail("Exception not thrown for setA null");
+        fail("intersection exception not thrown for empty setB");
     }
     
     /**
-     * Basic test of Union Method
+     * Basic test of union with array set values with one value overlapping
      * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testUnionBasic() {
-        System.out.println("Union Basic");
+        System.out.println("union basic values with one union");
         ArrayList<Integer> A = new ArrayList(Arrays.asList(1,2,3));
         ArrayList<Integer> B = new ArrayList(Arrays.asList(3,4,5));
         ArrayList expResult = new ArrayList(Arrays.asList(1,2,3,4,5));
@@ -332,12 +416,13 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Advanced Test of Union Method
-     * Expected Results: Pass
+     * ADetailed test using negative values and multiple duplicates between 
+     * the two array sets
+     * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testUnionAdvanced() {
-        System.out.println("Union Advanced");
+        System.out.println("union advanced values with multiple unions");
         ArrayList<Integer> A = new ArrayList(Arrays.asList(1,1,1,88,1,1,1,2,3));
         ArrayList<Integer> B = new ArrayList(Arrays.asList(6,88,-2,2));
         ArrayList expResult = new ArrayList(Arrays.asList(1,88,2,3,6,-2));
@@ -346,12 +431,13 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Test for no results of Union Method
-     * Expected result: Pass
+     * Test for a return result of a single value when both array sets contain 
+     * the same values
+     * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testUnionNoUnion() {
-        System.out.println("No Union Test");
+        System.out.println("union with no union values");
         ArrayList<Integer> A = new ArrayList(Arrays.asList(1,1,1,1,1));
         ArrayList<Integer> B = new ArrayList(Arrays.asList(1,1,1,1,1));
         
@@ -362,38 +448,39 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Exception Test for Union Method - Set A Null
-     * Expected Result: Pass
+     * Test for exception when set A is a null array
+     * Expected Result: Fail
      */
     @Test(timeout=5000, expected=IllegalArgumentException.class)
     public void testUnionNullArrayA() {
+        System.out.println("union exception for null set A");
         ArrayList<Integer> A = null;
         ArrayList<Integer> B = new ArrayList(Arrays.asList(3,4,5));
         ArrayList result = ArraySetUtilities.union(A, B);
-        fail("Expected exception not thrown");
+        fail("union exception not thrown for null set A");
     }
     
     /**
-     * Exception Test for Union Method - Set B Null
-     * Expected Result: Pass
+     * Test for exception when set B is a null array
+     * Expected Result: Fail
      */
     @Test(timeout=5000, expected=IllegalArgumentException.class)
     public void testUnionNullArrayB() {
-        System.out.println("un");
+        System.out.println("union exception for null set B");
         ArrayList<Integer> A = new ArrayList(Arrays.asList(3,4,5));
         ArrayList<Integer> B = null;
         ArrayList expResult = new ArrayList(Arrays.asList(1,2,3,4,5));
         ArrayList result = ArraySetUtilities.union(A, B);
-        fail("Expected exception not thrown");
+        fail("union exception not thrown for null set B");
     }
     
     /**
-     * Test of subSet method, basic pass of setB as subset of setA
-     * Expected: Pass
+     * Test that return result is true to show that set B is a subset of set A
+     * Expected Result: Fail
      */
     @Test(timeout=5000)
     public void testSubSetBasicTrue() {
-        System.out.println("Test subSet basic pass result of setB is subset setA");
+        System.out.println("subSet pass result when setB is a subset setA");
         ArrayList<Integer> setA = new ArrayList(Arrays.asList(1,2,3,4,5));
         ArrayList<Integer> setB = new ArrayList(Arrays.asList(1,2,3));
         boolean expResult = true;
@@ -402,12 +489,13 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Test of subSet method, basic pass of setB as subset of setA
-     * Expected: Pass
+     * Test that return result is false to show that set B is not a subset 
+     * of set A
+     * Expected Result: Pass
      */
     @Test(timeout=5000)
     public void testSubSetBasicFalse() {
-        System.out.println("Test subSet basic pass result of setB is subset setA");
+        System.out.println("subSet pass result when setB is not a subset setA");
         ArrayList<Integer> setA = new ArrayList(Arrays.asList(1,2,3));
         ArrayList<Integer> setB = new ArrayList(Arrays.asList(4,5,6));
         boolean expResult = false;
@@ -416,12 +504,13 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Test of subSet method, basic fail of setA as subset of setB
-     * Expected: fail
+     * Test that return results after basic true test failed.  Attempt to see 
+     * if method allows for set A to be a subset of set B.
+     * Expected Result: Fail
      */
     @Test(timeout=5000)
     public void testSubSetReverseSets() {
-        System.out.println("Test subSet basic pass result of setA is subset setB");
+        System.out.println("subSet pass result of setA is subset setB");
         ArrayList<Integer> setA = new ArrayList(Arrays.asList(1,2,3));
         ArrayList<Integer> setB = new ArrayList(Arrays.asList(1,2,3,4,5));
         boolean expResult = false;
@@ -430,30 +519,30 @@ public class ArraySetUtilitiesTest {
     }
     
     /**
-     * Test of subSet method, exception for null setA
-     * Expected: Pass
+     * Test for exception thrown when set A is a null array
+     * Expected Result: Fail
      */
     @Test(timeout=5000, expected=IllegalArgumentException.class)
     public void testSubSetBasicNullSetA() {
-        System.out.println("Test subSet null setA");
+        System.out.println("subSet exception for null setA");
         ArrayList<Integer> setA = null;
         ArrayList<Integer> setB = new ArrayList(Arrays.asList(1,2,3));
         boolean expResult = true;
         boolean result = ArraySetUtilities.subSet(setA, setB);
-        fail("Exception not thrown for null setA");
+        fail("subSet exception not thrown for null setA");
     }
     
     /**
-     * Test of subSet method, exception for null setB
-     * Expected: Pass
+     * Test for exception thrown when set B is a null array
+     * Expected Result: Fail
      */
     @Test(timeout=5000, expected=IllegalArgumentException.class)
     public void testSubSetBasicNullSetB() {
-        System.out.println("Test subSet null setB");
+        System.out.println("subSet exception for null setB");
         ArrayList<Integer> setA = new ArrayList(Arrays.asList(1,2,3));
         ArrayList<Integer> setB = null;
         boolean expResult = true;
         boolean result = ArraySetUtilities.subSet(setA, setB);
-        fail("Exception not thrown for null setA");
+        fail("subSet exception not thrown for null setB");
     }
 }
