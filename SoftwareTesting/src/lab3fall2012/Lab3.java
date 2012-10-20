@@ -1,17 +1,33 @@
+/**
+ * <p><strong>Statement of Authorship</strong><br />
+ * <strong style="color: red">
+ * I Christopher Hair, 000243034 certify that this material is my 
+ * original work. No other person's work has been used without suitable
+ * acknowledgment and I have not made my work available to anyone else.
+ * </strong></p>
+ * 
+ * <pre>
+ * File: Lab3.java
+ * Date: 10/20/12
+ * Author: Christopher Hair
+ * Student ID: 000243034
+ * </pre>
+ *
+ * <h2 style="color: blue">Description:</h2>
+ * <p>Summarized testing of the given sort methods of a provided class</p>
+ * 
+ * @author Christopher Hair
+ * @author Student ID 000243034 
+ */
 package lab3fall2012;
 
-import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.Random;
 import mohawkcollege.comp10066.perflib.Sort;
 
 /**
- * COMP10066 Lab#3 starter file The main method demonstrates manual timing code.
- * You may use this code in order to manually time the different sort methods.
- * The sort methods are in the jar file that is included with the project NOTE :
- * You do not have access to the sort code - Black Box Test
+ * Summarizes testing for the Sort class provided for Black Box Testing
  *
- * @author mark.yendt
+ * @author Christopher Hair
  */
 public class Lab3 {
     
@@ -79,7 +95,7 @@ public class Lab3 {
     }
   
     /**
-     * 
+     * Initial environment setup to ensure that JVM has compiled sort methods
      */
     private static void CompileHelper()
     {
@@ -102,9 +118,9 @@ public class Lab3 {
     }
     
     /**
-     * 
+     * Timing of the 'a' sort method in the sort class with the given size
      * @param size
-     * @return 
+     * @return Time to sort in microseconds (us)
      */
     private static long SortATime(int size)
     {
@@ -123,9 +139,9 @@ public class Lab3 {
     }
     
     /**
-     * 
+     * Timing of the 'b' sort method in the sort class with the given size
      * @param size
-     * @return 
+     * @return Time to sort in microseconds (us)
      */
     private static long SortBTime(int size)
     {
@@ -140,9 +156,9 @@ public class Lab3 {
     }
     
     /**
-     * 
+     * Timing of the 'c' sort method in the sort class with the given size
      * @param size
-     * @return 
+     * @return Time to sort in microseconds (us)
      */
     private static long SortCTime(int size)
     {
@@ -157,9 +173,9 @@ public class Lab3 {
     }
     
     /**
-     * 
+     * Timing of the 'd' sort method in the sort class with the given size
      * @param size
-     * @return 
+     * @return Time to sort in microseconds (us)
      */
     private static long SortDTime(int size)
     {
@@ -174,9 +190,9 @@ public class Lab3 {
     }
     
     /**
-     * 
+     * Timing of the 'e' sort method in the sort class with the given size
      * @param size
-     * @return 
+     * @return Time to sort in microseconds (us)
      */
     private static long SortETime(int size)
     {

@@ -7,8 +7,8 @@
  * </strong></p>
  * 
  * <pre>
- * File: ArraySetUtilitiesTest.java
- * Date: 10/05/12
+ * File: Lab3Test.java
+ * Date: 10/20/12
  * Author: Christopher Hair
  * Student ID: 000243034
  * </pre>
@@ -22,15 +22,13 @@
 package lab3fall2012;
 
 import java.util.Random;
+import mohawkcollege.comp10066.perflib.Sort;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-
-import mohawkcollege.comp10066.perflib.Sort;
-import org.junit.Assert;
 
 /**
  * Tests for sort methods in the Sort class provided
@@ -55,7 +53,7 @@ public class Lab3Test {
     }
     
     /**
-     * Used to let the jvm do an initial compile of the methods before tests
+     * Used to setup the JVM to do an initial compile of the methods before tests
      */
     @Before
     public void setUp() {
@@ -100,7 +98,8 @@ public class Lab3Test {
     }
     
     /**
-     * 
+     * Default test to check the sort method 'a' works as expected
+     * Expected Result: pass
      */
     @Test
     public void testSortADefault()
@@ -147,7 +146,8 @@ public class Lab3Test {
     }
     
     /**
-     * 
+     * Default test to check the sort method 'b' works as expected
+     * Expected Result: pass 
      */
     @Test
     public void testSortBDefault()
@@ -194,7 +194,8 @@ public class Lab3Test {
     }
     
     /**
-     * 
+     * Default test to check the sort method 'c' works as expected
+     * Expected Result: pass 
      */
     @Test
     public void testSortCDefault()
@@ -241,7 +242,8 @@ public class Lab3Test {
     }
     
     /**
-     * 
+     * Default test to check the sort method 'd' works as expected
+     * Expected Result: pass 
      */
     @Test
     public void testSortDDefault()
@@ -288,7 +290,8 @@ public class Lab3Test {
     }
     
     /**
-     * 
+     * Default test to check the sort method 'e' works as expected
+     * Expected Result: pass
      */
     @Test
     public void testSortEDefault()
@@ -334,8 +337,11 @@ public class Lab3Test {
         Assert.assertArrayEquals(expected, numbers);
     }
     
-    /* LARGE DATASET TESTING */
+    /*********** LARGE DATASET TESTING ***********/
     
+    /**
+     * Large dataset test of sort method 'a' to take less than 30s to complete
+     */
     @Test(timeout=30000)
     public void testSortALargeVol() 
     {
@@ -352,6 +358,9 @@ public class Lab3Test {
         System.out.printf("Sort A took %d us to sort %d elements\n", time, MAXSIZE);
     }
     
+    /**
+     * Large dataset test of sort method 'b' to take less than 30s to complete 
+     */
     @Test(timeout=30000)
     public void testSortBLargeVol() 
     {
@@ -368,6 +377,9 @@ public class Lab3Test {
         System.out.printf("Sort B took %d us to sort %d elements\n", time, MAXSIZE);
     }
     
+    /**
+     * Large dataset test of sort method 'c' to take less than 30s to complete
+     */
     @Test(timeout=30000)
     public void testSortCLargeVol() 
     {
@@ -384,6 +396,9 @@ public class Lab3Test {
         System.out.printf("Sort C took %d us to sort %d elements\n", time, MAXSIZE);
     }
     
+    /**
+     * Large dataset test of sort method 'd' to take less than 30s to complete
+     */
     @Test(timeout=30000)
     public void testSortDLargeVol() 
     {
@@ -400,6 +415,9 @@ public class Lab3Test {
         System.out.printf("Sort D took %d us to sort %d elements\n", time, MAXSIZE);
     }
     
+    /**
+     * Large dataset test of sort method 'e' to take less than 30s to complete
+     */
     @Test(timeout=30000)
     public void testSortELargeVol() 
     {
