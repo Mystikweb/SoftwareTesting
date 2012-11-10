@@ -4,18 +4,13 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="https://csu.mohawkcollege.ca/" />
-<title>Admin_Login</title>
+<title>Error User Login</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">Admin_Login</td></tr>
+<tr><td rowspan="1" colspan="3">Error User Login</td></tr>
 </thead><tbody>
-<tr>
-	<td>open</td>
-	<td>/tooltime/comp10066</td>
-	<td></td>
-</tr>
 <tr>
 	<td>open</td>
 	<td>/tooltime/comp10066/7/userauth/login.php</td>
@@ -24,12 +19,12 @@
 <tr>
 	<td>type</td>
 	<td>id=username</td>
-	<td>admin</td>
+	<td>thisuser1</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>name=password</td>
-	<td>admin</td>
+	<td>thispassword1</td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
@@ -37,10 +32,11 @@
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextPresent</td>
-	<td></td>
-	<td>admin</td>
+	<td>verifyElementPresent</td>
+	<td>class=error</td>
+	<td>Account has been disabled</td>
 </tr>
+
 </tbody></table>
 </body>
 </html>
